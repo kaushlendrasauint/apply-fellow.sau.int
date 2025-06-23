@@ -1,0 +1,1 @@
+$('#loginForm').submit(function(e) {             e.preventDefault();             alert("Login Successful!");         });
