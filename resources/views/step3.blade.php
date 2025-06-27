@@ -15,6 +15,35 @@
              @include('include.forms-header')
              @include('include.error')
 
+             <div class="form-group">
+                                <label for="other_courses"><h6>Please mention below up to five of your best Publications (Research Papers and books ):</h6></label>
+                                  <div class="d-flex justify-content-end mb-3">
+                                        <a class="btn btn-primary p-2" data-toggle="modal" data-target="#best_PublicationsModal"><i class="fa fa-plus"></i> Add</a>
+                                  </div>
+                                      <table class="table table-bordered table-striped">
+                                          <tbody>
+                                              @forelse($best_Publications as $index => $best_Publication)
+                                                  <tr>
+                                                      <td>{{ $index + 1 }}</td>
+                                                      <td>{{ $best_Publication->value }}</td>
+                                                      <td>
+                                                          <form action="{{ route('taught-courses.destroy', $best_Publication->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this course?')">
+                                                              @csrf
+                                                              @method('DELETE')
+                                                              <button class="btn btn-sm btn-danger">Delete</button>
+                                                          </form>
+                                                      </td>
+                                                  </tr>
+                                              @empty
+                                                  <tr>
+                                                      <td colspan="3" class="text-center">No Research Papers and books added yet.</td>
+                                                  </tr>
+                                              @endforelse
+                                          </tbody>
+                                      </table>
+                            </div>
+
+
             <!-- - ----------------------------   Start Publication Details -------------------------------->
             <form action="{{ route('updateStep3') }}" method="POST" >
                 @csrf
@@ -65,11 +94,13 @@
 
                 @endif
 
-                <div class="form-group">
+                
+
+                <!-- <div class="form-group">
                     <label for="optional1">Gaps in employment history:</label>
                     <textarea class="form-control" id="employment_history"
                         name="employment_history">{{ old('employment_history') ?? ($data->employment_history ?? '') }}</textarea>
-                </div>
+                </div> -->
 
 
                 <div class="col-md-12 d-flex justify-content-between" style="margin-top:2%">
@@ -83,6 +114,29 @@
             <!-- - ----------------------------   End  Publication Details -------------------------------->
         </div>
     </div>
+</div>
+
+
+<!-- Other Courses Modal -->
+<div class="modal fade" id="best_PublicationsModal" tabindex="-1" role="dialog" aria-labelledby="best_PublicationsModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form method="POST" action="{{ route('courses.save', ['type' => 'best_Publications']) }}">
+      @csrf
+       <input type="hidden" name="type" value="best_Publications">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title">Add Best Publications</h6>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" name="value" placeholder="Enter Best Publications">
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 @endsection

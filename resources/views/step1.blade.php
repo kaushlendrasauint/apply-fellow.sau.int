@@ -114,10 +114,10 @@
                         </div> --}}
 
                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="position" value="Teaching cum Research Fellow"
+                            <input class="form-check-input" type="radio" name="position" value="Teaching Fellow"
                                 id="Teaching cum Research Fellow"
-                                {{ old('position') == 'Teaching cum Research Fellow' || (isset($data) && $data->position == 'Teaching cum Research Fellow') ? 'checked' : '' }}>
-                            <label class="form-check-label" for="TeachingFellow">Teaching cum Research Fellow</label>
+                                {{ old('position') == 'Teaching Fellow' || (isset($data) && $data->position == 'Teaching Fellow') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="TeachingFellow">Teaching Fellow</label>
                         </div> 
                     </div>
 
@@ -216,9 +216,9 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="position_currenty">Position currenty held </label>
-                            <input type="text" class="form-control" id="position_currenty" name="position_currenty"
-                                value="{{ old('position_currenty') ?? $data->position_currenty }}">                               
+                            <label for="position_current_held">Position currently held </label>
+                            <input type="text" class="form-control" id="position_current_held" name="position_current_held"
+                                value="{{ old('position_current_held') ?? $data->position_current_held }}">                               
                         </div>
 
 
@@ -390,7 +390,7 @@
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="name_phd_thesis">Name of Ph.D. Thesis</label>
+                            <label for="name_phd_thesis">Title> of Ph.D. Thesis</label>
                             <input type="text" class="form-control" id="name_phd_thesis" name="name_phd_thesis"  value="{{ old('name_phd_thesis') ?? ($data->name_phd_thesis ?? '') }}">
                         </div>
                         <div class="form-group col-md-6">

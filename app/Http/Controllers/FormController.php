@@ -32,21 +32,23 @@ class FormController extends Controller
         }
     }
 
-    function isComplated()
+   function isCompleted()
     {
         $data = ApplicationForm::find($this->userId);
-
-        if ($data && $data->is_complate == '1') {
+        if ($data && $data->is_complete == 1) {
             return redirect()->to('/success');
-        }else{
-            return redirect()->to('/step');
         }
+        return null;
     }
 
 
     function step()
     {
-        $this->isComplated();
+        $redirect = $this->isCompleted();
+        if ($redirect) {
+            return $redirect;
+        }
+
         $data = ApplicationForm::find($this->userId);
         $info = compact('data');
         return view('step')->with($info);
@@ -66,7 +68,8 @@ class FormController extends Controller
 
             $encryptedId = base64_encode(Crypt::encryptString($application->id));
 
-            return response()->json(['success' => 'Application submitted successfully!', 'url' => 'step1'], 201);
+
+            return response()->json(['success' => 'Application saved successfully!', 'url' => 'step1'], 201);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
         } catch (\Exception $e) {
@@ -78,7 +81,7 @@ class FormController extends Controller
     function coming_soon()
     {
         $id = Session::get('user')->id;
-        $this->isComplated();
+        $this->isCompleted();
         $data = ApplicationForm::find($id);
         $info = compact('data');
         return view('coming_soon')->with($info);
@@ -87,7 +90,11 @@ class FormController extends Controller
 
     function step1()
     {
-        $this->isComplated();
+        $redirect = $this->isCompleted();
+        if ($redirect) {
+            return $redirect;
+        }
+
         $data = ApplicationForm::find($this->userId);
         $info = compact('data');
         return view('step1')->with($info);
@@ -107,6 +114,7 @@ class FormController extends Controller
                'dob' => ['required','date','before_or_equal:' . now()->subYears(20)->format('Y-m-d'),],
                 'email' => 'required|email',
                 'mobile' => ['required', 'string', 'regex:/^\d{10,15}$/'],
+                'position_current_held' => 'required|string',
                 'position_currenty' => 'required|string',
                 'work_address' => 'required|string|max:200',
                 'permanent_address' => 'required|string|max:200',
@@ -131,11 +139,14 @@ class FormController extends Controller
                 'others_award' => 'nullable|string',              
                 'others_university' => 'nullable|string',
                 'others_degree' => 'nullable|string',
+                
+
                 'doctoral_grades' => ['required', 'numeric', 'regex:/^\d{1,2}(\.\d{2})?$|^100(\.00)?$/'],
-                'master_grades' => ['required', 'numeric', 'regex:/^\d{1,2}(\.\d{2})?$|^100(\.00)?$/'],
-                'bachelor_grades' => ['required', 'numeric', 'regex:/^\d{1,2}(\.\d{2})?$|^100(\.00)?$/'],
-                'school_grades' => ['required', 'numeric', 'regex:/^\d{1,2}(\.\d{2})?$|^100(\.00)?$/'],
-                'others_grades' =>  ['nullable', 'numeric', 'regex:/^\d{1,2}(\.\d{2})?$|^100(\.00)?$/'],
+                'master_grades' => ['required', 'numeric', 'regex:/^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)$/'],
+                'bachelor_grades' => ['required', 'numeric', 'regex:/^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)$/'],
+                'school_grades' => ['required', 'numeric', 'regex:/^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)$/'],
+                'others_grades' =>  ['nullable', 'numeric', 'regex:/^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)$/'],
+
                 'name_phd_thesis' => 'required|string|max:200',
                 'supervisor' => 'required|string|max:100',
                 'step' => 'required',
@@ -145,11 +156,10 @@ class FormController extends Controller
             $applicationId = Session::get('user')->id;
             $application = ApplicationForm::findOrFail($applicationId);
            
-
             $application->update($validatedData);
 
             $encryptedId = base64_encode(Crypt::encryptString($application->id));
-            return redirect()->route('step2', ['id' => $encryptedId])->with('success', 'Application submitted successfully!');
+            return redirect()->route('step2', ['id' => $encryptedId])->with('success', 'Application saved successfully!');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
@@ -160,11 +170,14 @@ class FormController extends Controller
 
 
     public function step2($id)
-    {
+    {   
         $encryptedId = $id;
         $id = Crypt::decryptString(base64_decode($id));
 
-        $this->isComplated();
+        $redirect = $this->isCompleted();
+        if ($redirect) {
+            return $redirect;
+        }
 
         $data = ApplicationForm::find($id);
         $phd_details = PhdDetail::where('application_id', $id)->get();
@@ -174,9 +187,9 @@ class FormController extends Controller
         $compulsory_courses = TaughtCourses::where('type', 'compulsory_courses')->where('application_id', $id)->get();
         $optional_courses = TaughtCourses::where('type', 'optional_courses')->where('application_id', $id)->get();
         $other_courses = TaughtCourses::where('type', 'other_courses')->where('application_id', $id)->get();
-        $best_Publications = TaughtCourses::where('type', 'best_Publications')->where('application_id', $id)->get();
+       
 
-        return view('step2', compact('best_Publications','phd_details', 'encryptedId', 'data', 'careers', 'courses_taughts', 'compulsory_courses', 'optional_courses', 'other_courses'));
+        return view('step2', compact('phd_details', 'encryptedId', 'data', 'careers', 'courses_taughts', 'compulsory_courses', 'optional_courses', 'other_courses'));
     }
 
     public function updateCareer(Request $request)
@@ -238,6 +251,7 @@ class FormController extends Controller
 
             // Encrypt and redirect
             $encryptedId = base64_encode(Crypt::encryptString($this->userId));
+           
             return redirect('/step2/' . $encryptedId)->with('success', 'Updated successfully!');
         }
 
@@ -247,7 +261,6 @@ class FormController extends Controller
         $coursesTaught = TaughtCourses::where('application_id', $this->userId)->where('type', 'courses_taught')->count();
         $compulsoryCourses = TaughtCourses::where('application_id', $this->userId)->where('type', 'compulsory_courses')->count();
         $career = Career::where('application_id', $this->userId)->count();
-        $best_Publications = TaughtCourses::where('type', 'best_Publications')->where('application_id', $this->userId)->count();
 
         // Perform manual validation
         $errors = [];
@@ -268,14 +281,11 @@ class FormController extends Controller
             $errors['career'] = 'At least one career detail is required.';
         }
 
-        if ($best_Publications < 1) {
-            $errors['best_Publications'] = 'At least one best publication is required.';
-        }
+       
 
         if (!empty($errors)) {
             return redirect()->back()->withErrors($errors)->withInput();
         }
-
         $encryptedId = base64_encode(Crypt::encryptString($this->userId));
         return redirect('/step3/' . $encryptedId)->with('success', 'Updated successfully!');
     }
@@ -285,10 +295,16 @@ class FormController extends Controller
     {
         $encryptedId = $id;
         $id = Crypt::decryptString(base64_decode($id));
-        $this->isComplated();
+        
+        $redirect = $this->isCompleted();
+        if ($redirect) {
+            return $redirect;
+        }
 
         $data = ApplicationForm::find($id);
-        return view('step3', compact('encryptedId', 'data'));
+        $best_Publications = TaughtCourses::where('type', 'best_Publications')->where('application_id', $id)->get();
+        
+        return view('step3', compact('encryptedId', 'data','best_Publications'));
     }
 
     public function updateStep3(Request $request)
@@ -301,15 +317,21 @@ class FormController extends Controller
             'number_patents' => 'required|integer',
             'number_research_grants' => 'required|integer',
             'number_presentations' => 'required|integer',
-            'employment_history' => 'required|string',
         ]);
+
+            $best_Publications = TaughtCourses::where('type', 'best_Publications')->where('application_id', $this->userId)->get();
+
+            if ($best_Publications->count() < 1) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'best_Publications' => 'At least one best publication is required.',
+                ]);
+            }
 
         try {
             $applicationId = Crypt::decryptString(base64_decode($request->form_id));
             $application = ApplicationForm::findOrFail($applicationId);
             $validatedData['step'] = 3;
             $application->update($validatedData);
-
             return redirect()->route('step4', ['id' => $request->form_id])->with('success', 'Updated successfully!');
         } catch (\Exception $e) {
             \Log::error('Update failed: ' . $e->getMessage());
@@ -323,7 +345,10 @@ class FormController extends Controller
         $encryptedId = $id;
         $id = Crypt::decryptString(base64_decode($id));
 
-        $this->isComplated();
+        $redirect = $this->isCompleted();
+        if ($redirect) {
+            return $redirect;
+        }
 
         $data = ApplicationForm::find($id);
         $application_id = DocumentUpload::where('application_id', $id);
@@ -335,7 +360,7 @@ class FormController extends Controller
         $bachelors_degrees = DocumentUpload::where('application_id', $id)->where('document_type', 'bachelors_degrees')->value('document_path');
         $masters_degrees = DocumentUpload::where('application_id', $id)->where('document_type', 'masters_degrees')->value('document_path');
         $PhD_degrees = DocumentUpload::where('application_id', $id)->where('document_type', 'PhD_degrees')->value('document_path');
-
+      
         return view('step4', compact('encryptedId', 'data', 'application_id',
             'covering_letter', 'birth_certification', 'passport_photograph', 'resume',
             'bachelors_degrees', 'masters_degrees', 'PhD_degrees'));
@@ -344,7 +369,7 @@ class FormController extends Controller
    
     public function step5(Request $request, $id)
     {
-        $this->isComplated();
+        $this->isCompleted();
         // Decrypt application ID
         $encryptedId = $id;
         $id = Crypt::decryptString(base64_decode($id));
@@ -372,7 +397,8 @@ class FormController extends Controller
 
         // Load application form data
         $data = ApplicationForm::find($id);
-
+        
+        
         // Return the step5 view with data
         return view('step5', compact('encryptedId', 'data'));
     }
@@ -383,28 +409,30 @@ class FormController extends Controller
             $messages = [
                 'joining_date.required' => 'The joining date is required.',
                 'joining_date.date' => 'The joining date must be a valid date.',
+                
                 'consider_lower_position.required' => 'Please specify if you would consider a lower position.',
-                'consider_lower_position.in' => 'Invalid option for considering a lower position. Choose "yes" or "no".',
+                'consider_lower_position.in' => 'Invalid option for considering a lower position. Choose "yes" or "Not Applicable".',
+
                 'other_information.required' => 'Other information is required.',
                 'sau_reasons.required' => 'Please provide reasons for joining SAU.',
                 'legal_offences.required' => 'Details about legal offences are required.',
                 'health_problems.required' => 'Health problems information is required.',
                 'englishProficiency.required' => 'English proficiency level is required.',
-                'englishProficiency.in' => 'Invalid English proficiency level. Choose "excellent", "veryGood", or "good".',
+                'englishProficiency.in' => 'Invalid English proficiency level. Choose "Excellent", "Very Good", or "Good".',
                 'adminExperience.required' => 'Administrative experience details are required.',
                 'reason_joining.required' => 'Reason for joining is required.',
             ];
 
             $validatedData = $request->validate([
                 'joining_date' => 'required',
-                'consider_lower_position' => 'required|in:yes,no',
+                'consider_lower_position' => 'required|in:yes,Not Applicable',
                 'other_information' => 'required|string',
                 'sau_reasons' => 'required|string',
                 'legal_offences' => 'required|string',
                 'health_problems' => 'required|string',
-                'englishProficiency' => 'required|in:excellent,veryGood,good',
+                'englishProficiency' => 'required|in:Excellent,Very Good,Good',
                 'adminExperience' => 'required|string',
-                'reason_joining' => 'required|string|max:255',
+                'reason_joining' => 'nullable|string|max:255',
             ], $messages);
 
             $applicationId = Crypt::decryptString(base64_decode($request->form_id));
@@ -415,7 +443,7 @@ class FormController extends Controller
                 ['is_complete' => 0,
                 'step' => 5]
             ));
-
+          
             return redirect('/preview/' . $request->form_id)->with('success', 'Data updated successfully.');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->back()
@@ -439,16 +467,20 @@ class FormController extends Controller
         ApplicationForm::where('id', $this->userId)->update([
             'is_complete' => 1,
         ]);
+        
         return redirect('/thanks')->with('success', 'Data updated successfully.');
     }
   
 
     public function preview($id)
     {
-        $this->isComplated();
+        $redirect = $this->isCompleted();
+        if ($redirect) {
+            return $redirect;
+        }
+
         $encryptedId = $id;
-        $id = Crypt::decryptString(base64_decode($id));
-        
+        $id = Crypt::decryptString(base64_decode($id));        
         $data = ApplicationForm::find($id);
         $passport_photograph = DocumentUpload::where('application_id',$id)->where('document_type','passport_photograph')->first();
         $document_uploads = DocumentUpload::where('application_id',$id)->get();
@@ -461,14 +493,18 @@ class FormController extends Controller
         $other_courses = TaughtCourses::where('type', 'other_courses')->where('application_id', $id)->get();
         $careers = Career::where('application_id', $id)->get();
         $best_Publications = TaughtCourses::where('type', 'best_Publications')->where('application_id', $id)->get();
-        
-        return view('preview', compact('best_Publications','careers','encryptedId', 'other_courses','courses_taughts','data','document_uploads','passport_photograph','phd_details','compulsory_courses','optional_courses','courses_taught'));
+        $application_form = ApplicationForm::where('id', $id)->first();
+        return view('preview', compact('application_form','best_Publications','careers','encryptedId', 'other_courses','courses_taughts','data','document_uploads','passport_photograph','phd_details','compulsory_courses','optional_courses','courses_taught'));
     }
 
 
     public function step6($id)
     {
-        $this->isComplated();
+        $redirect = $this->isCompleted();
+        if ($redirect) {
+            return $redirect;
+        }
+        
         $encryptedId = $id;
         $id = Crypt::decryptString(base64_decode($id));
 
@@ -479,9 +515,6 @@ class FormController extends Controller
     function success()
     {   
         $data = ApplicationForm::find($this->userId);
-        // if ($data->is_complate != 1) {
-        //       return redirect()->to('/step1');
-        // }
         $ecrypted = base64_encode(Crypt::encryptString($this->userId));
         return view('success', compact('data','ecrypted'));
     }

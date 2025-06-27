@@ -68,9 +68,9 @@ Route::middleware([CheckUserSession::class])->group(function () {
     Route::post('/document-upload', [UploadDocumentsControllerer::class, 'upload'])->name('document.upload');
     Route::post('/document-upload-pdf', [UploadDocumentsControllerer::class, 'uploadPdf'])->name('document.uploadPdf');
 
-    Route::get('/download-application/{id}', [FormController::class, 'downloadApplicationPdf'])->name('download-application');
     Route::get('/send-application-email', [FormController::class, 'sendApplicationSubmittedEmail'])->name('send-application-email');
     Route::post('/finalSubmit', [FormController::class, 'finalSubmit'])->name('finalSubmit');
+    Route::get('/download-application/{id}', [FormController::class, 'downloadApplicationPdf'])->name('download-application');
 });
 
 
@@ -111,60 +111,62 @@ Route::prefix('admin')->group(function () {
     //    Route::get('/phd_reports/{Phd_programmes}',[AdmissionController::class,'Phd_programmes'])->name('Phd_programmes');
 
 
-    Route::get('/admp', [HomeController::class, 'admp'])->name('admp');
-    Route::get('/advc', [HomeController::class, 'advc'])->name('advc');
-    Route::get('/adict', [HomeController::class, 'adict'])->name('adict');
-    Route::get('/adTrain', [HomeController::class, 'adTrain'])->name('adTrain');
+    // Route::get('/admp', [HomeController::class, 'admp'])->name('admp');
+    // Route::get('/advc', [HomeController::class, 'advc'])->name('advc');
+    // Route::get('/adict', [HomeController::class, 'adict'])->name('adict');
+    // Route::get('/adTrain', [HomeController::class, 'adTrain'])->name('adTrain');
 
-    Route::get('/ddTrain', [HomeController::class, 'ddTrain'])->name('ddTrain');
-    Route::get('/ddMedia', [HomeController::class, 'ddMedia'])->name('ddMedia');
+    // Route::get('/ddTrain', [HomeController::class, 'ddTrain'])->name('ddTrain');
+    // Route::get('/ddMedia', [HomeController::class, 'ddMedia'])->name('ddMedia');
     
-    Route::get('/ddICT', [HomeController::class, 'ddICT'])->name('ddICT');
-    Route::get('/ddVirCampus', [HomeController::class, 'ddVirCampus'])->name('ddVirCampus');
+    // Route::get('/ddICT', [HomeController::class, 'ddICT'])->name('ddICT');
+    // Route::get('/ddVirCampus', [HomeController::class, 'ddVirCampus'])->name('ddVirCampus');
 
 
-    Route::get('/dirICT', [HomeController::class, 'dirICT'])->name('dirICT');
-    Route::get('/dirVirCampus', [HomeController::class, 'dirVirCampus'])->name('dirVirCampus');
-    Route::get('/dirTrain', [HomeController::class, 'dirTrain'])->name('dirTrain');
-    Route::get('/dirMedia', [HomeController::class, 'dirMedia'])->name('dirMedia');
+    // Route::get('/dirICT', [HomeController::class, 'dirICT'])->name('dirICT');
+    // Route::get('/dirVirCampus', [HomeController::class, 'dirVirCampus'])->name('dirVirCampus');
+    // Route::get('/dirTrain', [HomeController::class, 'dirTrain'])->name('dirTrain');
+    // Route::get('/dirMedia', [HomeController::class, 'dirMedia'])->name('dirMedia');
 
 
-    Route::get('/FLSBAssistant', [HomeController::class, 'FLSBAssistant'])->name('FLSBAssistant');
-    Route::get('/FLSProfessor', [HomeController::class, 'FLSProfessor'])->name('FLSProfessor');
-    Route::get('/FLSAssistant', [HomeController::class, 'FLSAssistant'])->name('FLSAssistant');
+    // Route::get('/FLSBAssistant', [HomeController::class, 'FLSBAssistant'])->name('FLSBAssistant');
+    // Route::get('/FLSProfessor', [HomeController::class, 'FLSProfessor'])->name('FLSProfessor');
+    // Route::get('/FLSAssistant', [HomeController::class, 'FLSAssistant'])->name('FLSAssistant');
 
 
-    Route::get('/FMCSProfessor', [HomeController::class, 'FMCSProfessor'])->name('FMCSProfessor');
-    Route::get('/FMCSAssociate', [HomeController::class, 'FMCSAssociate'])->name('FMCSAssociate');
-    Route::get('/FMCSAssistant', [HomeController::class, 'FMCSAssistant'])->name('FMCSAssistant');
+    // Route::get('/FMCSProfessor', [HomeController::class, 'FMCSProfessor'])->name('FMCSProfessor');
+    // Route::get('/FMCSAssociate', [HomeController::class, 'FMCSAssociate'])->name('FMCSAssociate');
+    // Route::get('/FMCSAssistant', [HomeController::class, 'FMCSAssistant'])->name('FMCSAssistant');
 
    
 
-    Route::get('/ManagementProfessor', [HomeController::class, 'ManagementProfessor'])->name('ManagementProfessor');
-    Route::get('/ManagementAssociate', [HomeController::class, 'ManagementAssociate'])->name('ManagementAssociate');
-    Route::get('/ManagementAssistant', [HomeController::class, 'ManagementAssistant'])->name('ManagementAssistant');
+    // Route::get('/ManagementProfessor', [HomeController::class, 'ManagementProfessor'])->name('ManagementProfessor');
+    // Route::get('/ManagementAssociate', [HomeController::class, 'ManagementAssociate'])->name('ManagementAssociate');
+    // Route::get('/ManagementAssistant', [HomeController::class, 'ManagementAssistant'])->name('ManagementAssistant');
 
 
-    Route::get('/MathematicsAssistant', [HomeController::class, 'MathematicsAssistant'])->name('MathematicsAssistant');
+    // Route::get('/MathematicsAssistant', [HomeController::class, 'MathematicsAssistant'])->name('MathematicsAssistant');
 
 
-    Route::get('/CSEProfessor', [HomeController::class, 'CSEProfessor'])->name('CSEProfessor');
-    Route::get('/CSEAssociate', [HomeController::class, 'CSEAssociate'])->name('CSEAssociate');
-    Route::get('/CSEAssistant', [HomeController::class, 'CSEAssistant'])->name('CSEAssistant');
+    // Route::get('/CSEProfessor', [HomeController::class, 'CSEProfessor'])->name('CSEProfessor');
+    // Route::get('/CSEAssociate', [HomeController::class, 'CSEAssociate'])->name('CSEAssociate');
+    // Route::get('/CSEAssistant', [HomeController::class, 'CSEAssistant'])->name('CSEAssistant');
 
 
-    Route::get('/dirEnglishAssistantMedia', [HomeController::class, 'EnglishAssistant'])->name('EnglishAssistant');
+    // Route::get('/dirEnglishAssistantMedia', [HomeController::class, 'EnglishAssistant'])->name('EnglishAssistant');
 
-    Route::get('/PhysicsAssociate', [HomeController::class, 'PhysicsAssociate'])->name('PhysicsAssociate');
-    Route::get('/PhysicsAssistant', [HomeController::class, 'PhysicsAssistant'])->name('PhysicsAssistant');
+    // Route::get('/PhysicsAssociate', [HomeController::class, 'PhysicsAssociate'])->name('PhysicsAssociate');
+    // Route::get('/PhysicsAssistant', [HomeController::class, 'PhysicsAssistant'])->name('PhysicsAssistant');
 
 
-    Route::get('/ChemistryAssistant', [HomeController::class, 'ChemistryAssistant'])->name('ChemistryAssistant');
+    // Route::get('/ChemistryAssistant', [HomeController::class, 'ChemistryAssistant'])->name('ChemistryAssistant');
 
-    Route::get('/ElectronicsEngAssistant', [HomeController::class, 'ElectronicsEngAssistant'])->name('ElectronicsEngAssistant');
+    // Route::get('/ElectronicsEngAssistant', [HomeController::class, 'ElectronicsEngAssistant'])->name('ElectronicsEngAssistant');
 
-    Route::get('/ClimateAssociate', [HomeController::class, 'ClimateAssociate'])->name('ClimateAssociate');
-    Route::get('/ClimateAssistant', [HomeController::class, 'ClimateAssistant'])->name('ClimateAssistant');
+    // Route::get('/ClimateAssociate', [HomeController::class, 'ClimateAssociate'])->name('ClimateAssociate');
+    // Route::get('/ClimateAssistant', [HomeController::class, 'ClimateAssistant'])->name('ClimateAssistant');
+
+     Route::get('/download/{id}',[HomeController::class,'download']);
 
 
 });

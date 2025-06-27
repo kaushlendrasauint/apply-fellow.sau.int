@@ -61,8 +61,7 @@
                 <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Paid</th>
-                        <th scope="col">Unpaid</th>
+                      
                         <th scope="col">Total</th>    
                     </tr>
                 </thead>
@@ -71,8 +70,7 @@
                     
                    
                       <tr>
-                        <td><?=DB::table('application_forms')->where('paid', 1)->count();?> </td>
-                        <td><?=DB::table('application_forms')->where('paid','!=' ,1)->count();?> </td>
+                       
                         <td><?=DB::table('application_forms')->count() ;?></td>
                     </tr>
                   
@@ -84,332 +82,30 @@
                 </div>
             </div>
 
-                        <!-- row -->
-                                <div class="row">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                        <h5>Teaching</h5>
-                                    <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Position</th>
-                                            <th scope="col">Paid</th>
-                                            <th scope="col">Unpaid</th>
-                                            <th scope="col">Total</th>    
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                      
-                                        
-                                        <th scope="row">1</th>
-                                            <td>Assistant Professor</td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('paid', 1)->count();?> </td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('paid','!=' ,1)->count();?> </td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('paid', 1)->count() + DB::table('application_forms')->where('position', 'Assistant Professor')->where('paid','!=' ,1)->count();?></td>
-                                        </tr>
-                                        <th scope="row">2</th>
-                                            <td>Associate Professor</td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('paid', 1)->count();?> </td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('paid','!=' ,1)->count();?> </td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('paid', 1)->count() + DB::table('application_forms')->where('position', 'Associate Professor')->where('paid','!=' ,1)->count();?></td>
-                                        </tr>
-                                        <th scope="row">3</th>
-                                            <td>Professor</td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Professor')->where('paid', 1)->count();?> </td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Professor')->where('paid','!=' ,1)->count();?> </td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Professor')->where('paid', 1)->count() + DB::table('application_forms')->where('position', 'Professor')->where('paid','!=' ,1)->count();?></td>
-                                        </tr>
-
-                           
-                                    
-                                        <th scope="row">Total</th>
-                                            <td></td> 
-                                            
-                                            <td><b><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('paid', 1)->count()
-                                                     + DB::table('application_forms')->where('position', 'Associate Professor')->where('paid', 1)->count()
-                                                     + DB::table('application_forms')->where('position', 'Professor')->where('paid', 1)->count();;?></b>
-                                            </td>
-
-                                            <td><b><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('paid', '!=' ,1)->count()
-                                                     + DB::table('application_forms')->where('position', 'Associate Professor')->where('paid','!=' , 1)->count()
-                                                     + DB::table('application_forms')->where('position', 'Professor')->where('paid', '!=' ,1)->count();;?></b>
-                                            </td>
-
-
-                                            <td><b><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('paid', 1)->count()
-                                                     + DB::table('application_forms')->where('position', 'Associate Professor')->where('paid', 1)->count()
-                                                     + DB::table('application_forms')->where('position', 'Professor')->where('paid', 1)->count() 
-                                                     + DB::table('application_forms')->where('position', 'Assistant Professor')->where('paid', '!=' ,1)->count()
-                                                     + DB::table('application_forms')->where('position', 'Associate Professor')->where('paid','!=' , 1)->count()
-                                                     + DB::table('application_forms')->where('position', 'Professor')->where('paid', '!=' ,1)->count();?></b>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    </table>                            
-                                    </div>
-                                </div>
-                <!-- row closed -->
-
-
 
                 
                                 <!-- row -->
                                  
-                                <div class="row">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <h5>Total Position in Department wise (Paid & Advertised)</h5>
-                                    <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Position</th>
-                                            <th scope="col">Chemistry</th>
-                                            <th scope="col">Climate Change</th>               
-                                            <th scope="col">Electronics Engineering</th>
-                                            <th scope="col">Department of Computer Science</th>
-                                            <th scope="col">Department of Mathematics</th>
-                                            <th scope="col">English</th>
-                                            <!-- <th scope="col">Faculty of Arts and Design</th> -->
-                                            <th scope="col">Faculty of Legal Studies</th>
-                                            <th scope="col">Faculty of Life Sciences & Biotechnology</th>
-                                            <th scope="col">Faculty of Management</th>                              
-                                            <th scope="col">Physics</th>  
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Assistant Professor	</td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Chemistry')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Climate Change')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Electronics Engineering')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Department of Computer Science')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Department of Mathematics')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'English')->where('paid', 1)->count();?> </td>
-<!-- <td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Faculty of Arts and Design')->where('paid', 1)->count();?> </td> -->
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Faculty of Legal Studies')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Faculty of Life Sciences & Biotechnology')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Faculty of Management')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Physics')->where('paid', 1)->count();?> </td>
-                                        </tr>
+                    
 
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Associate Professor		</td>
-                                            <td></td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Climate Change')->where('paid', 1)->count();?> </td>
-<td></td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Department of Computer Science')->where('paid', 1)->count();?> </td>
-<td></td>
-<td></td>
-<!-- <td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Faculty of Arts and Design')->where('paid', 1)->count();?> </td> -->
-<td></td>
-<td></td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Faculty of Management')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Physics')->where('paid', 1)->count();?> </td>
 
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Professor</td>
-                                            <td></td>
-                                            <td></td>
-<td></td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Department of Computer Science')->where('paid', 1)->count();?> </td>
-<td></td>
-<td></td>
-<!-- <td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Faculty of Arts and Design')->where('paid', 1)->count();?> </td> -->
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Faculty of Legal Studies')->where('paid', 1)->count();?> </td>
-<td></td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Faculty of Management')->where('paid', 1)->count();?> </td>
-<td></td>
 
-                                        </tr>
-                                       
-                                    </tbody>
-                                   </table>
-                                  </div>
-                                </div>
+                                
 
+                <!-- row closed -->
 
-                                <!-- row -->
 
-                              
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <hr style="border: 0; height: 2px; background: #007bff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); margin: 30px 0;">
 
 
 
 
 
                                 
-                                <!-- row -->
-                                 
-                                <div class="row">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <h5>Total Position in Department wise Paid but not advertised</h5>
-                                    <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Position</th>
-                                            <th scope="col">Chemistry</th>
-                                            <th scope="col">Climate Change</th>               
-                                            <th scope="col">Electronics Engineering</th>                                           
-                                            <th scope="col">Department of Mathematics</th>
-                                            <th scope="col">Department of International Relations</th>
-                                            <th scope="col">Department of Sociology</th>
-                                            <th scope="col">English</th>
-                                            <th scope="col">Faculty of Arts and Design</th>
-                                            <th scope="col">Faculty of Economics</th>
-                                            <th scope="col">Faculty of Legal Studies</th>
-                                            <th scope="col">Faculty of Life Sciences & Biotechnology</th>                           
-                                            <th scope="col">Physics</th>  
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Assistant Professor	</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Department of International Relations')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Department of Sociology')->where('paid', 1)->count();?> </td>
-<td></td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Faculty of Arts and Design')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Assistant Professor')->where('faculty_department', 'Faculty of Economics')->where('paid', 1)->count();?> </td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Associate Professor		</td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Chemistry')->where('paid', 1)->count();?> </td>
-<td></td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Electronics Engineering')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Department of Mathematics')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Department of International Relations')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Department of Sociology')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'English')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Faculty of Arts and Design')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Faculty of Economics')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Faculty of Legal Studies')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Associate Professor')->where('faculty_department', 'Faculty of Life Sciences & Biotechnology')->where('paid', 1)->count();?> </td>
-<td></td>
-<td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Professor</td>
-                                            <td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Chemistry')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Climate Change')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Electronics Engineering')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Department of Mathematics')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Department of International Relations')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Department of Sociology')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'English')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Faculty of Arts and Design')->where('paid', 1)->count();?> </td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Faculty of Economics')->where('paid', 1)->count();?> </td>
-<td></td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Faculty of Life Sciences & Biotechnology')->where('paid', 1)->count();?> </td>
-<td></td>
-<td><?=DB::table('application_forms')->where('position', 'Professor')->where('faculty_department', 'Physics')->where('paid', 1)->count();?> </td>
 
-                                        </tr>
-                                       
-                                    </tbody>
-                                   </table>
-                                  </div>
-                                </div>
+                </div>
+                <!-- row closed -->
 
-
-                                <!-- row -->
-
-
-                              
 
 
         </div>

@@ -38,7 +38,7 @@
         <p>Your application has been successfully submitted. Our hiring committee will review your application and get
             back to you shortly.</p>
         <p>If you have any questions, please feel free to contact us at <a
-                href="mailto:recruitment@sau.int">recruitment@sau.int</a>.</p>
+                href="mailto:techsupport-apply@sau.int">techsupport-apply@sau.int</a>.</p>
         {{-- <a href="{{ route('dashboard') }}" class="btn btn-primary">Back to Home</a> --}}
     </div>
 

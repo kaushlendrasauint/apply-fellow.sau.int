@@ -43,7 +43,10 @@
                                 <label>Selection Committees reserve the right to offer a position lower than the one applied for.
                                     Are you willing to be considered for a position at a lower level?</label>
                                 <select class="form-control" name="consider_lower_position">
-                                    <option value="" disabled
+                                    <option value="Not Applicable"
+                                        {{ old('consider_lower_position') == '' && empty($data->consider_lower_position) ? 'selected' : '' }}>
+                                        Not Applicable </option>
+                                        <!-- <option value="" disabled
                                         {{ old('consider_lower_position') == '' && empty($data->consider_lower_position) ? 'selected' : '' }}>
                                         Select an option</option>
                                     <option value="yes"
@@ -51,7 +54,7 @@
                                         Yes</option>
                                     <option value="no"
                                         {{ old('consider_lower_position') == 'no' || (isset($data) && $data->consider_lower_position == 'no') ? 'selected' : '' }}>
-                                        No</option>
+                                        No</option> -->
                                 </select>
                             </div>
                         </div>
@@ -97,21 +100,21 @@
                     <div class="form-group">
                         <label>How proficient are you in English:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="englishProficiency" id="excellent"
-                                value="excellent"
-                                {{ old('englishProficiency') == 'excellent' || (isset($data) && $data->englishProficiency == 'excellent') ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="englishProficiency" id="Excellent"
+                                value="Excellent"
+                                {{ old('englishProficiency') == 'Excellent' || (isset($data) && $data->englishProficiency == 'Excellent') ? 'checked' : '' }}>
                             <label class="form-check-label" for="excellent">Excellent</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="englishProficiency" id="veryGood"
-                                value="veryGood"
-                                {{ old('englishProficiency') == 'veryGood' || (isset($data) && $data->englishProficiency == 'veryGood') ? 'checked' : '' }}>
+                                value="Very Good"
+                                {{ old('englishProficiency') == 'Very Good' || (isset($data) && $data->englishProficiency == 'Very Good') ? 'checked' : '' }}>
                             <label class="form-check-label" for="veryGood">Very Good</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="englishProficiency" id="good"
-                                value="good"
-                                {{ old('englishProficiency') == 'good' || (isset($data) && $data->englishProficiency == 'good') ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="englishProficiency" id="Good"
+                                value="Good"
+                                {{ old('englishProficiency') == 'Good' || (isset($data) && $data->englishProficiency == 'Good') ? 'checked' : '' }}>
                             <label class="form-check-label" for="good">Good</label>
                         </div>
                     </div>
@@ -126,13 +129,6 @@
                         <label>Please mention here if you have any administrative experience:</label>
                         <textarea class="form-control" rows="4" name="adminExperience">{{ old('adminExperience') ?? ($data->adminExperience ?? '') }}</textarea>
                     </div>
-
-                    <div class="form-group">
-                        <label for="reason_joining">Why do you want to join SAU?</label>
-                        <textarea class="form-control" id="reason_joining" name="reason_joining">{{ old('reason_joining') ?? ($data->reason_joining ?? '') }}</textarea>
-                    </div>
-
-
 
 
                     <div class="col-md-12 d-flex justify-content-between" style="margin-top:2%">

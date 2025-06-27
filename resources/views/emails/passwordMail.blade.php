@@ -13,7 +13,7 @@
     <p>Username: {{ $mailData['email'] }}</p>
     <p>Password: {{ $mailData['password'] }}</p>
     <p>Please keep this information secure and confidential to maintain your privacy. These credentials can be used to
-        complete as well as check the status of your application with South Aaian University.</p>
+        complete as well as check the status of your application with South Asian University.</p>
 
     <p>To log in, visit&nbsp;<a href="https://apply-fellow.sau.int/">https://apply-fellow.sau.int</a>. You&#39;ll gain
         access to your existing application form(s) and also be able to create new application(s).<br />

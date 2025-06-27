@@ -42,56 +42,40 @@
         <div class="col-3 col-sm-3">
             <select class="form-control" id="position" name="position">
                 <option value="">Select Position</option>
-                <option value="Assistant" {{ (old('position', $position) == 'Assistant') ? 'selected' : '' }}>Assistant</option>
-                <option value="Senior Assistant" {{ (old('position', $position) == 'Senior Assistant') ? 'selected' : '' }}>Senior Assistant</option>
-                <option value="Assistant Director" {{ (old('position', $position) == 'Assistant Director') ? 'selected' : '' }}>Assistant Director</option>
-                <option value="Deputy Director" {{ (old('position', $position) == 'Deputy Director') ? 'selected' : '' }}>Deputy Director</option>
-                <option value="Director" {{ (old('position', $position) == 'Director') ? 'selected' : '' }}>Director</option>
-                <option value="Assistant Professor" {{ (old('position', $position) == 'Assistant Professor') ? 'selected' : '' }}>Assistant Professor</option>
-                <option value="Associate Professor" {{ (old('position', $position) == 'Associate Professor') ? 'selected' : '' }}>Associate Professor</option>
-                <option value="Professor" {{ (old('position', $position) == 'Professor') ? 'selected' : '' }}>Professor</option>                             
+               <option value="Teaching Fellow" {{ (old('position', $position) == 'Teaching Fellow') ? 'selected' : '' }}>Teaching Fellow</option>                             
             </select>
         </div>
 
         <div class="col-3 col-sm-3">
+            @php
+                $selectedOption = old('department', $selectedOption ?? ''); // use old input or a default variable
+            @endphp
+
             <select class="form-control" id="faculty_department" name="faculty_department">
                 <option value="">Select Department</option>
-                <option value="Academics" {{ (old('faculty_department', $faculty_department) == 'Academics') ? 'selected' : '' }}>Academics</option>
-                <option value="Admissions" {{ (old('faculty_department', $faculty_department) == 'Admissions') ? 'selected' : '' }}>Admissions</option>
-                <option value="Administration" {{ (old('faculty_department', $faculty_department) == 'Administration') ? 'selected' : '' }}>Administration</option>
-                <option value="Accounts" {{ (old('faculty_department', $faculty_department) == 'Accounts') ? 'selected' : '' }}>Accounts</option>
-                <option value="Corporate" {{ (old('faculty_department', $faculty_department) == 'Corporate') ? 'selected' : '' }}>Corporate</option>
-                <option value="Examinations" {{ (old('faculty_department', $faculty_department) == 'Examinations') ? 'selected' : '' }}>Examinations</option>
-                <option value="ICT" {{ (old('faculty_department', $faculty_department) == 'ICT') ? 'selected' : '' }}>ICT</option>
-                <option value="Management" {{ (old('faculty_department', $faculty_department) == 'Management') ? 'selected' : '' }}>Management</option>
-                <option value="Media &amp; PR" {{ (old('faculty_department', $faculty_department) == 'Media &amp; PR') ? 'selected' : '' }}>Media & PR</option>
-                <option value="Training &amp; Placement" {{ (old('faculty_department', $faculty_department) == 'Training &amp; Placement') ? 'selected' : '' }}>Training & Placement</option>
-                <option value="Virtual Campus" {{ (old('faculty_department', $faculty_department) == 'Virtual Campus') ? 'selected' : '' }}>Virtual Campus</option>
-                <option value="Chemistry" {{ (old('faculty_department', $faculty_department) == 'Chemistry') ? 'selected' : '' }}>Chemistry</option>
-                <option value="Climate Change">Climate Change</option>               
-                <option value="Electronics Engineering">Electronics Engineering</option>
-                <option value="Department of Computer Science">Department of Computer Science</option>
-                <option value="Department of Mathematics">Department of Mathematics</option>
-                <option value="Department of International Relations">Department of International Relations</option>
-                <option value="Department of Sociology">Department of Sociology</option>
-                <option value="English" {{ (old('faculty_department', $faculty_department) == 'English') ? 'selected' : '' }}>English</option>
-                <option value="Faculty of Arts and Design">Faculty of Arts and Design</option>
-                <option value="Faculty of Economics">Faculty of Economics</option>
-                <option value="Faculty of Mathematics &amp; Computer Science">Faculty of Mathematics &amp; Computer Science</option>
-                <option value="Faculty of Legal Studies">Faculty of Legal Studies</option>
-                <option value="Faculty of Life Sciences &amp; Biotechnology">Faculty of Life Sciences &amp; Biotechnology</option>
-                <option value="Faculty of Management">Faculty of Management</option>                              
-                <option value="Physics" {{ (old('faculty_department', $faculty_department) == 'Physics') ? 'selected' : '' }}>Physics</option>
+                <option value="Faculty of Arts and Design" {{ $selectedOption == 'Faculty of Arts and Design' ? 'selected' : '' }}>Faculty of Arts and Design</option>
+                <option value="Faculty of Chemical Sciences" {{ $selectedOption == 'Faculty of Chemical Sciences' ? 'selected' : '' }}>Faculty of Chemical Sciences</option>
+                <option value="Faculty of Economics" {{ $selectedOption == 'Faculty of Economics' ? 'selected' : '' }}>Faculty of Economics</option>
+                <option value="Faculty of Legal Studies" {{ $selectedOption == 'Faculty of Legal Studies' ? 'selected' : '' }}>Faculty of Legal Studies</option>
+                <option value="Faculty of Physical Sciences" {{ $selectedOption == 'Faculty of Physical Sciences' ? 'selected' : '' }}>Faculty of Physical Sciences</option>
+                <option value="Faculty of Management" {{ $selectedOption == 'Faculty of Management' ? 'selected' : '' }}>Faculty of Management</option>
+                <option value="Department of Sociology" {{ $selectedOption == 'Department of Sociology' ? 'selected' : '' }}>Department of Sociology</option>
+                <option value="Department of Mathematics" {{ $selectedOption == 'Department of Mathematics' ? 'selected' : '' }}>Department of Mathematics</option>
+                <option value="Department of International Relations" {{ $selectedOption == 'Department of International Relations' ? 'selected' : '' }}>Department of International Relations</option>
+                <option value="Department of Public Policy and Governance" {{ $selectedOption == 'Department of Public Policy and Governance' ? 'selected' : '' }}>Department of Public Policy and Governance</option>
+                <option value="Department of Computer Science and Engineering" {{ $selectedOption == 'Department of Computer Science and Engineering' ? 'selected' : '' }}>Department of Computer Science and Engineering</option>
+                <option value="Faculty of Life Sciences &amp; Biotechnology" {{ $selectedOption == 'Faculty of Life Sciences & Biotechnology' ? 'selected' : '' }}>Faculty of Life Sciences &amp; Biotechnology</option>
+                
             </select>
         </div>
 
-        <div class="col-2 col-sm-2">
+        {{-- <div class="col-2 col-sm-2">
             <select class="form-control" id="payment" name="payment">
                 <option value="">Select Payment</option>
                 <option value="1" {{ (old('1', $payment) == '1') ? 'selected' : '' }}>Paid</option>
                 <option value="0" {{ (old('0', $payment) == '0') ? 'selected' : '' }}>Unpaid</option>
             </select>
-        </div>
+        </div> --}}
 
 
         <div class="col-2 col-sm-2">
@@ -123,7 +107,7 @@
                                             <th>Email</th>
                                             <th>Mobile</th>
                                             <th>Nationality</th>
-                                            <th>Resume</th>
+                                            <th>View</th>
                                             {{-- <th>Delete</th> --}}
                                         </tr>
                                     </thead>
@@ -137,12 +121,7 @@
                                             <td> {{ $value->email }}</td>
                                             <td> {{ $value->mobile }}</td>
                                             <td> {{ $value->nationality }}</td>
-                                            <td>
-                                                @if($value->latest_cv)
-                                                <a href="https://apply.sau.int/storage/{{ $value->latest_cv }}">
-                                                    click Here</a>
-                                                @endif
-                                            </td>
+                                            <td><a href="https://apply-fellow.sau.int/admin/download/{{ $value->id }}">Click Here</a></td>
 
                                             {{-- 
                                                     <td>

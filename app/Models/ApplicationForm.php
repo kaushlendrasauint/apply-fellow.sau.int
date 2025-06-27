@@ -17,6 +17,7 @@ class ApplicationForm extends Model
         'gender','spouse_name',
         'nationality','dob',
         'email',
+        'position_current_held',
         'mobile',
         'name_phd_thesis',
         'supervisor',        

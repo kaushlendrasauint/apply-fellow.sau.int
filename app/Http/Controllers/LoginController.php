@@ -84,7 +84,7 @@ class LoginController extends Controller
                 'otp' => $user_data->otp
             ];
             Mail::to($user_data->email)->send(new OtpMail($mailData));
-            return redirect('otp/' . Crypt::encrypt($info->id))->with('success', 'Check your mail for verification and mail check in spam also.');
+            return redirect('otp/' . Crypt::encrypt($info->id));
         }
     }
 
@@ -166,7 +166,7 @@ class LoginController extends Controller
             ];
             Mail::to($tempUser->email)->send(new UserIdPasswordMail($mailData));
             //session(['user'=> $registion]);
-            return redirect('SignIn/')->with('success', 'Your SAU Admission Portal Login Details has been sent in registered email id ');
+            return redirect('SignIn/')->with('success', 'Your SAU Recruitment Portal Login Details has been sent in registered email id ');
         } else {
             return redirect('SignIn/')->with('warning', 'Please Enter correct EmailId');
         }

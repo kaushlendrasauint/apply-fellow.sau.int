@@ -23,9 +23,6 @@
                     <div class="alert alert-danger">{{ Session::get('warning') }} </div>
                 @endif
 
-
-                <div class="alert alert-success">Please check your email for the OTP. If you don't see it in your inbox, kindly check your spam or junk folder as well</div>
-
                 <form class="form-horizontal" action="{{ url('verifyOtp') }}" method="post" id="SignUpform">
                     @csrf
                     <input type="hidden" name="userId" value="{{ Request::segment(2) }}">

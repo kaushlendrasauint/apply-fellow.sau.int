@@ -250,183 +250,18 @@
                             
                            
 <li class="slide">
-    <a class="side-menu__item" data-bs-toggle="slide" href="#">
+    <a class="side-menu__item" data-bs-toggle="slide" href="{{ route('list') }}">
         <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
             <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
         </svg>
-        <span class="side-menu__label">Non Teaching</span>
+        <span class="side-menu__label">Rrecruitments List</span>
         <i class="angle fe fe-chevron-down"></i>
     </a>
-    <ul class="slide-menu">
-        
-        <li><a class="slide-item" href="{{ route('list') }}">Rrecruitments List</a></li>
-
-        <li><a class="slide-item" href="{{ route('admp') }}">Assistant Director (Media & PR)</a></li>
-        <li><a class="slide-item" href="{{ route('advc') }}">Assistant Director (Virtual Campus)</a></li>
-        <li><a class="slide-item" href="{{ route('adict') }}">Assistant Director (ICT)</a></li>
-        <li><a class="slide-item" href="{{ route('adTrain') }}">Assistant Director (Train. & Pl.)</a></li>
-
-        <li><a class="slide-item" href="{{ route('ddTrain') }}">Deputy Director (Train. & Pl.)</a></li>
-        <li><a class="slide-item" href="{{ route('ddMedia') }}">Deputy Director (Media & PR)</a></li>
-        <li><a class="slide-item" href="{{ route('ddICT') }}">Deputy Director (ICT)</a></li>
-        <li><a class="slide-item" href="{{ route('ddVirCampus') }}">Deputy Director (Virtual Campus)</a></li>
-
-
-        <li><a class="slide-item" href="{{ route('dirICT') }}">Director (ICT)</a></li>
-        <li><a class="slide-item" href="{{ route('dirVirCampus') }}">Director (Virtual Campus)</a></li>
-        <li><a class="slide-item" href="{{ route('dirTrain') }}">Director (Train. & Pl.)</a></li>
-        <li><a class="slide-item" href="{{ route('dirMedia') }}">Director (Media & PR)</a></li>
-    </ul>
 </li>
 
-                      
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">FLSB	</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li>
-                    <a class="slide-item" href="{{ route('FLSBAssistant') }}" target="_blank">Assistant Professor</a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">FMCS	</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('FMCSProfessor') }}" target="_blank">Professor</a></li>
-                <li><a class="slide-item" href="{{ route('FMCSAssociate') }}" target="_blank">Associate Professor</a></li>
-                <li><a class="slide-item" href="{{ route('FMCSAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
-
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">FLS	</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('FLSProfessor') }}" target="_blank">Professor</a></li>
-                <li><a class="slide-item" href="{{ route('FLSAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
+          
         
 
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">Management</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('ManagementProfessor') }}" target="_blank">Professor</a></li>
-                <li><a class="slide-item" href="{{ route('ManagementAssociate') }}" target="_blank">Associate Professor</a></li>
-                <li><a class="slide-item" href="{{ route('ManagementAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
-
-
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">Mathematics</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('MathematicsAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
-
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">CS and Engineering</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('CSEProfessor') }}" target="_blank">Professor</a></li>
-                <li><a class="slide-item" href="{{ route('CSEAssociate') }}" target="_blank">Associate Professor</a></li>
-                <li><a class="slide-item" href="{{ route('CSEAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
-
-
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">English</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('EnglishAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
-
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">Physics</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('PhysicsAssociate') }}" target="_blank">Associate Professor</a></li>
-                <li><a class="slide-item" href="{{ route('PhysicsAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
-
-
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">Chemistry</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('ChemistryAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
-                           
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">Electronics Eng</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('ElectronicsEngAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
-
-
-        <li class="slide">
-            <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 2 .001 4H5V5h14zM5 11h8v8H5v-8zm10 8v-8h4.001l.001 8H15z" />
-                </svg>
-                <span class="side-menu__label">Climate</span><i class="angle fe fe-chevron-down"></i>
-            </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('ClimateAssociate') }}" target="_blank">Associate Professor</a></li>
-                <li><a class="slide-item" href="{{ route('ClimateAssistant') }}" target="_blank">Assistant Professor</a></li>
-            </ul>
-        </li>
 
     </ul>
                         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg"

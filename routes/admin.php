@@ -13,10 +13,14 @@ use App\Http\Controllers\Admin\AdmissionController;
       Route::get('/phd_reports/btech_reports',[AdmissionController::class,'btech_reports'])->name('btech_reports');
       Route::get('/phd_reports/mtech_reports',[AdmissionController::class,'mtech_reports'])->name('mtech_reports');
 
+//      Route::get('/download/{id}',[HomeController::class,'download']);
+
       Route::get('login-panel',[HomeController::class,'login']);
       Route::post('login-panel',[HomeController::class,'checkLogin']);
       Route::get('logout',[HomeController::class,'logout']);
+      
       Route::get('/home',[HomeController::class,'index'])->name('home');
+
       Route::get('/change-password',[HomeController::class,'changePassword'])->name('changePassword');
       Route::get('/add-change-password',[App\Http\Controllers\Admin\HomeController::class,'addChangePassword'])->name('addChangePassword');
        

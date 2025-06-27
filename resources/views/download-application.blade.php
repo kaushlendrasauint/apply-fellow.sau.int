@@ -170,10 +170,12 @@
                 <td><strong>Name of the Candidate</strong></td>
                 <td colspan="6">{{$application_form->name}}</td>
             </tr>
-            <tr>
-                <td><strong>Spouse Name</strong></td>
-                <td colspan="6">{{$application_form->spouse_name}}</td>
-            </tr>
+            @if($application_form->spouse_name)
+                <tr>
+                    <td><strong>Spouse Name</strong></td>
+                    <td colspan="6">{{$application_form->spouse_name}}</td>
+                </tr>
+            @endif
             <tr>
                 <td><strong>Gender</strong></td>
                 <td colspan="6">{{$application_form->gender}}</td>
@@ -189,10 +191,10 @@
 
             <tr>
                 <td><strong>Position currenty held</strong></td>
-                <td colspan="6">{{$application_form->position_currenty}}</td>
+                <td colspan="6">{{$application_form->position_current_held}}</td>
             </tr>
             <tr>
-                <td><strong>Current Position</strong></td>
+                <td><strong>Is the postion Permanent or Temporary</strong></td>
                 <td colspan="6">{{$application_form->position_currenty}}</td>
             </tr>
             <tr>
@@ -227,7 +229,7 @@
             <tr>
                 <td><strong>Position</strong></td>
                 <td>{{$application_form->position}}</td>
-                <td><strong>Department</strong></td>
+                <td><strong>Department/ Faculty</strong></td>
                 <td colspan="3">{{$application_form->faculty_department}}</td>
             </tr>
 
@@ -236,13 +238,23 @@
             <tr class="bg-color">
                 <td colspan="6"><h5>Education</h5></td>
             </tr>
+            <tr>
+                <td>Level</td>
+                <td>Name of Degree	</td>
+                <td>University / College </td>
+               <td>Date of Joining</td>
+               <td>Date of Award of Degree	</td>
+                <td>Marks(%)
+</td>
+            </tr>
+
             @if($application_form->doctoral_award)
             <tr>
                 <td>Doctoral Degree</td>
                 <td>{{$application_form->doctoral_degree}}</td>
                 <td>{{$application_form->doctoral_university}}</td>
-                <td><strong>Date of Joining</strong></td>
                <td>{{ \Carbon\Carbon::parse($application_form->doctoral_joining)->format('d-m-Y') }}</td>
+               <td>{{ \Carbon\Carbon::parse($application_form->doctoral_award)->format('d-m-Y') }}</td>
                 <td>{{$application_form->doctoral_grades}}%</td>
             </tr>
             @endif
@@ -253,8 +265,8 @@
                 <td>Master’s Degree</td>
                 <td>{{$application_form->master_degree}}</td>
                 <td>{{$application_form->master_university}}</td>
-                <td><strong>Date of Joining</strong></td>
                 <td>{{ $application_form->master_joining ? \Carbon\Carbon::parse($application_form->master_joining)->format('d-m-Y') : '' }}</td>
+                 <td>{{ \Carbon\Carbon::parse($application_form->master_award)->format('d-m-Y') }}</td>
                 <td>{{$application_form->master_grades}}%</td>
             </tr>
             @endif
@@ -264,9 +276,9 @@
                 <td>Bachelor’s Degree</td>
                 <td>{{$application_form->bachelor_degree}}</td>
                 <td>{{$application_form->bachelor_university}}</td>
-                <td><strong>Date of Joining</strong></td>
                <td>{{ $application_form->bachelor_joining ? \Carbon\Carbon::parse($application_form->bachelor_joining)->format('d-m-Y') : '' }}</td>
-                <td>{{$application_form->bachelor_grades}}%</td>
+                 <td>{{ \Carbon\Carbon::parse($application_form->bachelor_award)->format('d-m-Y') }}</td>
+               <td>{{$application_form->bachelor_grades}}%</td>
             </tr>
             @endif
 
@@ -275,9 +287,9 @@
                 <td>school’s Degree</td>
                 <td>{{$application_form->school_degree}}</td>
                 <td>{{$application_form->school_university}}</td>
-                <td><strong>Date of Joining</strong></td>
                <td>{{ $application_form->school_joining ? \Carbon\Carbon::parse($application_form->school_joining)->format('d-m-Y') : '' }}</td>
-                <td>{{$application_form->school_grades}}%</td>
+                <td>{{ \Carbon\Carbon::parse($application_form->school_award)->format('d-m-Y') }}</td>
+               <td>{{$application_form->school_grades}}%</td>
             </tr>
             @endif
 
@@ -286,13 +298,12 @@
                 <td>Others</td>
                 <td>{{$application_form->others_degree}}</td>
                 <td>{{$application_form->others_university}}</td>
-                <td><strong>Date of Joining</strong></td>
                 <td>{{$application_form->others_award}}</td>
                 <td>{{$application_form->others_grades}}%</td>
             </tr>
             @endif
             <tr>
-                <td>Name of Ph.D. Thesis</td>
+                <td>Title of Ph.D. Thesis</td>
                 <td colspan="2">{{$application_form->name_phd_thesis}}</td>
                 <td><strong>Name of the Supervisor</strong></td>
                 <td  colspan="2">{{$application_form->supervisor}}</td>
@@ -322,7 +333,52 @@
             @endforeach
             
            
+            <tr class="bg-color">
+                <td colspan="6"><h5>Courses Taught</h5></td>
+            </tr>
 
+            <tr>
+                <td colspan="6" style="text-align: center; font-weight: bold;">List the courses you have taught, if any, at post-graduate MA /
+                                    M.Sc /M.Tech./ B.A/ B.Sc/ B.Tech levels. Mention durations against each:</td>
+            </tr>
+              @forelse($courses_taughts as $index => $courses_taught)
+                <tr>
+                <td>{{ $index+1 }}</td>
+                <td  colspan="5">{{ $courses_taught->value }}</td>
+                </tr>
+            @endforeach
+
+            <tr>
+                <td colspan="6" style="font-weight: bold;">Which of the compulsory courses can you teach independently to MA / M.Sc / M.Tech/ B.A/ B.Sc/ B.Tech students?</td>
+            </tr>
+               @foreach ($compulsory_courses as $key => $compulsory_course)
+                <tr>
+                    <td>{{ $key+1 }}</td>
+                    <td  colspan="5">{{ $compulsory_course->value }}</td>
+                </tr>
+            @endforeach
+
+            <tr>
+                <td colspan="6" style="font-weight: bold;">Which of the optional courses can you teach independently at MA / M.Sc. / M.Tech/ B.A/ B.Sc/ B.Tech level?</td>
+            </tr>
+               @foreach ($optional_courses as $key => $course)
+                <tr>
+                    <td>{{ $key+1 }}</td>
+                    <td  colspan="5">{{ $course->value }}</td>
+                </tr>
+            @endforeach
+
+
+             <tr>
+                <td colspan="6" style="font-weight: bold;">Any other course, not listed in SAU’s list of courses, which you may like to develop and teach to further strengthen your field of studies:</td>
+            </tr>
+
+              @forelse($other_courses as $index => $other_course)
+                <tr>
+                    <td>{{ $index+1 }}</td>
+                    <td  colspan="5">{{ $other_course->value }}</td>
+                </tr>
+            @endforeach
              
 
              @if($careers)
@@ -331,11 +387,11 @@
                 </tr>
                 <tr>
                     <th>Position Held</th>
-                    <th>Employer's Name / Address</th>
+                    <th>Employer's Name and Address</th>
                     <th>Government / Private</th>
                     <th>Date From</th>
                     <th>Date To</th>
-                    <th>Salary($ US)</th>
+                    <th>Salary US $PA</th>
                 </tr>
                 @foreach($careers as $career)
                 <tr>
@@ -353,17 +409,10 @@
                 </tr>
                 @endforeach   
             @endif
-            <tr>
-                <td><strong>English Proficiency</strong></td>
-                <td colspan="5">{{ $application_form->englishProficiency ?? 'N/A' }}</td>
-            </tr>
-            <tr>
-                <td><strong>Administrative Experience</strong></td>
-                <td colspan="5"> {!! nl2br(e($application_form->adminExperience)) !!} </td>
-            </tr>    
+           
              
             <tr class="bg-color">
-                <td colspan="6"><h5>Publications</h5></td>
+                <td colspan="6"><h5>Publications/ Grants</h5></td>
             </tr>
             <tr>
               <td><strong>Number of Books Edited</strong></td>
@@ -382,51 +431,12 @@
                <td>{{ $application_form->number_research_grants ?? 'N/A' }}</td>
                
             </tr>
-            <tr>
+                        <tr>
              <td colspan="3"><strong>Number of Presentations in Conferences and Symposia</strong></td>
              <td colspan="3">{{ $application_form->number_presentations ?? 'N/A' }}</td>
             </tr>
-
-           <tr class="bg-color">
-                <td colspan="6"><h5>Teaching Experience</h5></td>
-            </tr>
-
             <tr>
-                <td colspan="6" style="text-align: center; font-weight: bold;">List the courses you have taught, if any, at post-graduate MA /
-                                    M.Sc / /M.Tech. levels. Mention durations against each:</td>
-            </tr>
-              @forelse($courses_taughts as $index => $courses_taught)
-                <tr>
-                <td>{{ $index+1 }}</td>
-                <td  colspan="5">{{ $courses_taught->value }}</td>
-                </tr>
-            @endforeach
-
-            <tr>
-                <td colspan="6" style="text-align: center; font-weight: bold;">Which of the listed compulsory courses can you teach independently to MA / M.Sc / M.Tech students?</td>
-            </tr>
-               @foreach ($optional_courses as $key => $course)
-                <tr>
-                    <td>{{ $key+1 }}</td>
-                    <td  colspan="5">{{ $course->value }}</td>
-                </tr>
-            @endforeach
-
-
-             <tr>
-                <td colspan="6" style="text-align: center; font-weight: bold;">Any other course, not listed in SAU’s list of courses, which you may like to develop and teach to further strengthen your field of studies:</td>
-            </tr>
-
-              @forelse($other_courses as $index => $other_course)
-                <tr>
-                    <td>{{ $index+1 }}</td>
-                    <td  colspan="5">{{ $other_course->value }}</td>
-                </tr>
-            @endforeach
-
-
-            <tr>
-                <td colspan="6" style="text-align: center; font-weight: bold;">Please mention below up to five of your best Publications (Research Papers and books ):</td>
+                <td colspan="6" style="font-weight: bold;">Please mention below up to five of your best Publications (Research Papers and books ):</td>
             </tr>
 
               @forelse($best_Publications as $index => $best_Publication)
@@ -435,6 +445,8 @@
                     <td  colspan="5">{{ $best_Publication->value }}</td>
                 </tr>
             @endforeach
+
+ 
 
             <tr class="bg-color">
                 <td colspan="6"><h5>Other Information</h5></td>
@@ -445,24 +457,26 @@
 
             <!-- Academic and Research Details -->
             
-            <tr>
+            <!-- <tr>
                 <td><strong>Publications</strong></td>
                 <td colspan="5">{!! nl2br(e($application_form->publications)) !!} </td>
-            </tr>
-            <tr>
+            </tr> -->
+            <!-- <tr>
                 <td><strong>Gap in Employment History</strong></td>
                 <td colspan="5">{!! nl2br(e($application_form->employment_history)) !!}</td>
-            </tr>
+            </tr> -->
 
             <!-- Personal and Additional Information -->
             <tr>
-                <td><strong>Joining Date</strong></td>
+                <td><strong>Time required for joining</strong></td>
                 <td colspan="5">{{ $application_form->joining_date ?? 'N/A' }}</td>
             </tr>
+@if(1!=1)
             <tr>
                 <td><strong>Consider Lower Position</strong></td>
                 <td colspan="5">{{ $application_form->consider_lower_position ?? 'N/A' }}</td>
             </tr>
+            @endif
             <tr>
                 <td><strong>Other Information</strong></td>
                 <td  colspan="5">{!! nl2br(e($application_form->other_information)) !!} </td>
@@ -478,6 +492,14 @@
                 <td colspan="5"> {!! nl2br(e($application_form->health_problems)) !!}  </td>
             </tr>
                                         
+             <tr>
+                <td><strong>English Proficiency</strong></td>
+                <td colspan="5">{{ $application_form->englishProficiency ?? 'N/A' }}</td>
+            </tr>
+            <tr>
+                <td><strong>Administrative Experience</strong></td>
+                <td colspan="5"> {!! nl2br(e($application_form->adminExperience)) !!} </td>
+            </tr>    
                                 
 
          
@@ -498,8 +520,25 @@
             @endforeach   
             
 
+        
+
 
         </table> 
+
+        <table>
+                <tr> <td>
+                <p  style="margin-top: 10px;">
+                I have read the minimum eligibility conditions for applying for the position and certify I meet all the prescribed conditions. I understand that the concealment / incompletion / misrepresentation of facts, in any form or content, will result in cancellation of my candidature, before or even after appointment.
+                </p>
+                <br><br>
+<p style="text-align: right;">{{ $application_form->name }}</p>
+
+
+            </td>
+            </tr>
+      
+           
+        </table>
     </div>
     
     
