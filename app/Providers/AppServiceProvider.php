@@ -21,10 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        VerifyCsrfToken::except([
-            // 'sau-payment/success', // Exclude this route
-            '/sau-payment/success', // Exclude this route
-            // 'https://apply.sau.int/sau-payment/success', // Exclude this route
-        ]);
+        // VerifyCsrfToken::except([
+        //     // 'sau-payment/success', // Exclude this route
+        //     '/sau-payment/success', // Exclude this route
+        //     // 'https://apply.sau.int/sau-payment/success', // Exclude this route
+        // ]);
     }
 }

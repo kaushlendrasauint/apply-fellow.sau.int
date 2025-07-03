@@ -381,6 +381,7 @@
             @endforeach
              
 
+            
              @if($careers)
                 <tr class="bg-color">
                     <td colspan="6"><h5>Career History</h5></td>
@@ -393,21 +394,24 @@
                     <th>Date To</th>
                     <th>Salary US $PA</th>
                 </tr>
-                @foreach($careers as $career)
-                <tr>
-                    
-                    <td>{{ $career->career_position ?? 'N/A' }}</td>
-                    <td>{{ $career->career_employer ?? 'N/A' }}</td>
-                    <td>{{ $career->career_address ?? 'N/A' }}</td>
-                   <td>
-                        {{ $career->career_datefrom ? \Carbon\Carbon::parse($career->career_datefrom)->format('d-m-Y') : 'N/A' }}
-                    </td>
-                    <td>
-                        {{ $career->career_dateTo ? \Carbon\Carbon::parse($career->career_dateTo)->format('d-m-Y') : 'N/A' }}
-                    </td>
-                    <td>{{ $career->career_salary ?? 'N/A' }}</td>
-                </tr>
-                @endforeach   
+               @forelse($careers as $career)
+                    <tr>
+                        <td>{{ $career->career_position ?? 'N/A' }}</td>
+                        <td>{{ $career->career_employer ?? 'N/A' }}</td>
+                        <td>{{ $career->career_address ?? 'N/A' }}</td>
+                        <td>
+                            {{ $career->career_datefrom ? \Carbon\Carbon::parse($career->career_datefrom)->format('d-m-Y') : 'N/A' }}
+                        </td>
+                        <td>
+                            {{ $career->career_dateTo ? \Carbon\Carbon::parse($career->career_dateTo)->format('d-m-Y') : 'N/A' }}
+                        </td>
+                        <td>{{ $career->career_salary ?? 'N/A' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center">No career records found.</td>
+                    </tr>
+                @endforelse
             @endif
            
              

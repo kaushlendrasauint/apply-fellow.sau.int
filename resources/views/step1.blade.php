@@ -390,7 +390,7 @@
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="name_phd_thesis">Title> of Ph.D. Thesis</label>
+                            <label for="name_phd_thesis">Title of Ph.D. Thesis</label>
                             <input type="text" class="form-control" id="name_phd_thesis" name="name_phd_thesis"  value="{{ old('name_phd_thesis') ?? ($data->name_phd_thesis ?? '') }}">
                         </div>
                         <div class="form-group col-md-6">

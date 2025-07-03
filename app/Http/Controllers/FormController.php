@@ -277,7 +277,7 @@ class FormController extends Controller
             $errors['compulsoryCourses'] = 'At least one compulsory course entry is required.';
         }
 
-        if ($career < 1) {
+        if ($career < 0) {
             $errors['career'] = 'At least one career detail is required.';
         }
 

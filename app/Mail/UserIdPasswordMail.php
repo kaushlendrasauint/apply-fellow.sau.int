@@ -29,7 +29,7 @@ class UserIdPasswordMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Your SAU Admission Portal Login Details',
+            subject: 'Your SAU Recruitment Portal Login Details',
         );
     }
   
