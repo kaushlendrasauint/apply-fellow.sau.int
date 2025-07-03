@@ -9,7 +9,7 @@ Currently open only for: Rolling Advertisement for Teaching Fellows (Advertiseme
 
 <div class="panel-footer" style="background-color:#0e4c92;color:white;text-align:center" align="center">
     <center>© South Asian University<br> Rajpur Road, Maidan Garhi, New Delhi 110068, India<br>
-        Phones: +91 11 20863540 <br>All right reserved.</center>
+        Phones: +91 11 35656641 <br>All right reserved.</center>
 </div>
 </div>
 
