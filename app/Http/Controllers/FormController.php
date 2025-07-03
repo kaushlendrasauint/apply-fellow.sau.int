@@ -141,7 +141,7 @@ class FormController extends Controller
                 'others_degree' => 'nullable|string',
                 
 
-                'doctoral_grades' => ['required', 'numeric', 'regex:/^\d{1,2}(\.\d{2})?$|^100(\.00)?$/'],
+                'doctoral_grades' => 'required|string|max:4',
                 'master_grades' => ['required', 'numeric', 'regex:/^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)$/'],
                 'bachelor_grades' => ['required', 'numeric', 'regex:/^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)$/'],
                 'school_grades' => ['required', 'numeric', 'regex:/^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)$/'],
