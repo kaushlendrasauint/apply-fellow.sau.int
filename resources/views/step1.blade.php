@@ -2,8 +2,8 @@
 @section('content')
 <div class="panel panel-primary pt-2" style="background-color:#fdb756; padding: 0px 2rem;">
         <div class=" panel-heading d-flex flex-direction-md-column justify-content-end gap-2">
-            <p><strong>Name:</strong> {{$data->name}}</p>
-            <p style="margin-left: 10px;"><strong>Application Form No	:</strong> SAU-R&C-2025-26-{{ $data->id }}</p>
+            <p><strong>Name:</strong> {{$data->name ?? ''}}</p>
+            <p style="margin-left: 10px;"><strong>Application Form No	:</strong> SAU-R&C-2025-26-{{ $data->id ?? '' }}</p>
             <a href="{{ route('logout') }}" style="margin-left:12px;color: red; font-size: 16px; text-decoration: none;">Logout</a>
 
         </div>
