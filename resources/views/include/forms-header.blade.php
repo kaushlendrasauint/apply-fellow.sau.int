@@ -13,6 +13,8 @@
                     <img src="{{ asset('/uploads/saarc.png') }}" alt="Saarc Image">
                 </div>
 
+           
+
 
                 <div class="progress mb-4">
                 @php
@@ -144,3 +146,18 @@
             </div>
 
          
+            <style>
+    .blink {
+      animation: blinker 1s linear infinite;
+      color: red;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+
+  </style>

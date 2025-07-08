@@ -265,7 +265,7 @@ class FormController extends Controller
         // Perform manual validation
         $errors = [];
 
-        if ($phdDetails < 1) {
+        if ($phdDetails < 0) {
             $errors['phdDetails'] = 'At least one Ph.D. detail is required.';
         }
 

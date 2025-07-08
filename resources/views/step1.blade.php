@@ -1,12 +1,31 @@
 @extends('layouts.main')
 @section('content')
-<div class="panel panel-primary pt-2" style="background-color:#fdb756; padding: 0px 2rem;">
-        <div class=" panel-heading d-flex flex-direction-md-column justify-content-end gap-2">
-            <p><strong>Name:</strong> {{$data->name ?? ''}}</p>
-            <p style="margin-left: 10px;"><strong>Application Form No	:</strong> SAU-R&C-2025-26-{{ $data->id ?? '' }}</p>
-            <a href="{{ route('logout') }}" style="margin-left:12px;color: red; font-size: 16px; text-decoration: none;">Logout</a>
 
+    
+
+<div class="panel panel-primary pt-2" style="background-color:#fdb756; padding: 0px 2rem;">
+
+<div class="row">
+    <!-- Left column -->
+    <div class="col-md-6">
+        <div class="notice">
+            <p class="blink">⚠️ Use Chrome browser for better experience!</p>
         </div>
+    </div>
+
+    <!-- Right column (aligned right) -->
+    <div class="col-md-6 d-flex justify-content-end">
+        
+            <p><strong>Name:</strong> {{$data->name ?? ''}} |&nbsp;&nbsp; </p>
+            <p><strong>Application Form No:</strong> SAU-R&C-2025-26-{{ $data->id ?? '' }} |&nbsp;&nbsp; </p>
+            <a href="{{ route('logout') }}" style="color: red; font-size: 16px; text-decoration: none;">Logout</a>
+        
+    </div>
+</div>
+
+
+</div>
+
     </div>
     
     <div class="container">
@@ -192,7 +211,7 @@
                                 value="{{ old('nationality') ?? $data->nationality }}">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="dob">Date of Birth</label>
+                            <label for="dob">Date of Birth (dd-mm-yyyy)</label>
                             <input type="date" class="form-control" id="dob" name="dob"
                                 value="{{ old('dob') ?? $data->dob }}">
                         </div>
@@ -280,8 +299,8 @@
                                     <th scope="col">Level</th>
                                     <th scope="col">Name of Degree</th>
                                     <th scope="col">University / College / School / Institution</th>
-                                    <th scope="col">Date of Joining</th>
-                                    <th scope="col">Date of Award of Degree</th>
+                                    <th scope="col">Date of Joining <br> (dd-mm-yyyy)</th>
+                                    <th scope="col">Date of Award of Degree <br> (dd-mm-yyyy)</th>
                                     <th scope="col"> Marks(%)</th>
                                 </tr>
                             </thead>
